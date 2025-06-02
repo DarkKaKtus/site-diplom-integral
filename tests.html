@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тесты</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="tests.css">
+    <script defer src="tests.js"></script>
+    <script src="script.js"></script>
+</head>
+<header>
+    <div class="page-title" id="pageTitle">
+        <img src="icons/main.png" id="pageIcon" alt="">
+        <span id="pageName">Главная</span>
+    </div>
+</header>
+<body>
+    <div class="sidebar">
+        <ul>
+            <li class="menu-item">
+                <a href="index.html">
+                    <img src="icons/main.png" alt="Главная">
+                    <span>Главная</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="theory.html">
+                    <img src="icons/theory.png" alt="Теория">
+                    <span>Теория</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="zadaniya.html">
+                    <img src="icons/zadaniya.png" alt="Задания">
+                    <span>Задания</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="tests.html">
+                    <img src="icons/exam.png" alt="Тесты">
+                    <span>Тесты</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="videos.html">
+                    <img src="icons/video.png" alt="Видео">
+                    <span>Видео</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="glossary.html">
+                    <img src="icons/dictionary.png" alt="Глоссарий">
+                    <span>Глоссарий</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="tetrad.html">
+                    <img src="icons/tetrad.png" alt="Тетрадь">
+                    <span>О тетради</span>
+                </a>
+            </li>                                    
+        </ul>
+    </div>
+
+    <div id="test-selection" class="test-grid button-container">
+        <button class="test-btn" onclick="startTest('basic')">Основные свойства</button>
+        <button class="test-btn" onclick="startTest('elementary')">Элементарные функции</button>
+        <button class="test-btn" onclick="startTest('substitution')">Замена переменной</button>
+        <button class="test-btn" onclick="startTest('parts')">Интегрирование по частям</button>
+        <button class="test-btn" onclick=""></button>
+        <button class="test-btn" onclick=""></button>
+    </div>
+    
+
+    <div id="test-container" class="hidden">
+        <button id="back-btn" onclick="location.reload()">⬅ Назад к выбору тестов</button>
+
+        <div id="question"></div>
+        <div id="answers"></div>
+        <div id="result" class="hidden"></div>
+    </div>
+    <footer class="site-footer">
+        <p>Тесляк Игорь 711/722 ТТЖТ 2025</p>
+    </footer>
+</body>
+</html>
