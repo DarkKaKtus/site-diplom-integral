@@ -1,82 +1,161 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAIN</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="menu.css">
-    <script defer src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAIN</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="menu.css">
+  <script defer src="script.js"></script>
+  <style>
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+ 
+    .character-container {
+      position: fixed;
+      left: 5%; 
+      bottom: 40%;
+      z-index: 999;
+      animation: fadeIn 2s ease-out;
+    }
+
+    .character-container img {
+      width: 200px;
+      max-width: 100%;
+    }
+    
+
+
+    .home-extra {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #f5f5f5;
+      border-radius: 8px;
+        width: 800px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .home-extra h2 {
+      margin-bottom: 10px;
+    }
+    .home-extra p {
+      margin-bottom: 10px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .home-extra .cta-button {
+      background-color: #1890ff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    .home-extra .cta-button:hover {
+      background-color: #147cd4;
+    }
+
+
+    #img-txt{
+    width: 300px;
+    height: 150px;
+    }
+  </style>
 </head>
 <body>
-    <div id="introOverlay">
-        <div class="intro-left"></div>
-        <div class="intro-right"></div>
-        <div class="intro-content">
-            <h1>Интерактивная тетрадь по теме ИНТЕГРАЛ</h1>
-            <button id="startButton">Начать</button>
-        </div>
+  <div id="introOverlay">
+    <div class="intro-left"></div>
+    <div class="intro-right"></div>
+    <div class="intro-content">
+      <h1>Интерактивная тетрадь по теме ИНТЕГРАЛ</h1>
+      <button id="startButton">Начать</button>
     </div>
-    
-    
-    
-    <div class="sidebar">
-        <ul>
-            <li class="menu-item">
-                <a href="index.html">
-                    <img src="icons/main.png" alt="Главная">
-                    <span>Главная</span>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="theory.html">
-                    <img src="icons/theory.png" alt="Теория">
-                    <span>Теория</span>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="zadaniya.html">
-                    <img src="icons/zadaniya.png" alt="Задания">
-                    <span>Задания</span>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="tests.html">
-                    <img src="icons/exam.png" alt="Тесты">
-                    <span>Тесты</span>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="videos.html">
-                    <img src="icons/video.png" alt="Видео">
-                    <span>Видео</span>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="glossary.html">
-                    <img src="icons/dictionary.png" alt="Глоссарий">
-                    <span>Глоссарий</span>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="info.html">
-                    <img src="icons/tetrad.png" alt="Тетрадь">
-                    <span>О тетради</span>
-                </a>
-            </li>                                    
-        </ul>
+  </div>
+  
+  <div class="sidebar">
+    <ul>
+      <li class="menu-item">
+        <a href="index.html">
+          <img src="icons/main.png" alt="Главная">
+          <span>Главная</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="theory.html">
+          <img src="icons/theory.png" alt="Теория">
+          <span>Теория</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="zadaniya.html">
+          <img src="icons/zadaniya.png" alt="Задания">
+          <span>Задания</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="tests.html">
+          <img src="icons/exam.png" alt="Тесты">
+          <span>Тесты</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="videos.html">
+          <img src="icons/video.png" alt="Видео">
+          <span>Видео</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="glossary.html">
+          <img src="icons/dictionary.png" alt="Глоссарий">
+          <span>Глоссарий</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="info.html">
+          <img src="icons/tetrad.png" alt="Тетрадь">
+          <span>О тетради</span>
+        </a>
+      </li>                                    
+    </ul>
+  </div>
+  
+  
+ 
+  <div class="page-title" id="pageTitle">
+    <img src="icons/txt.png" id="img-txt" alt="">
+  </div>
+  
+
+  <div class="content">
+    <div class="home-extra">
+      <h2>Это интерактивная тетрадь</h2>
+      <p>Здесь вы найдёте подробную теорию, практические задания, тесты и видеоуроки для закрепления и углубления знаний.</p>
+      <p>Независимо от того, являетесь ли вы студентом или просто хотите освежить знания — эта интерактивная тетрадь станет вашим незаменимым помощником.</p>
+      <a href="zadaniya.html" class="cta-button">К заданиям</a>
     </div>
-    <div class="page-title" id="pageTitle">
-        <img src="icons/main.png" id="pageIcon" alt="">
-        <span id="pageName">Главная</span>
-    </div>
-    <div class="content">
-        <h1>Добро пожаловать!</h1>
-        <p>Выберите нужный раздел в меню.</p>
-    </div>
-    <footer class="site-footer">
-        <p>Тесляк Игорь 711/722 ТТЖТ 2025</p>
-    </footer>
+  </div>
     
+
+
+  </div>
+  
+  <div class="character-container">
+    <img src="icons/men.png" alt="Парень, указывающий на меню">
+  </div>
+  
+  <footer class="site-footer">
+    <p>Тесляк Игорь 711/722 ТТЖТ 2025</p>
+  </footer>
 </body>
 </html>

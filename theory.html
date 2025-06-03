@@ -1,123 +1,257 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Теория - Интегралы</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="menu.css">
-    <script defer src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Теория - Интегралы</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="menu.css">
+    <script src="script.js"></script>
+  <style>
+    /* Стили для аккордеона */
+    .accordion {
+      margin-top: 20px;
+    }
+    .accordion-item {
+      border-bottom: 1px solid #ccc;
+    }
+    .accordion-header {
+      background-color: #f2f2f2;
+      color: #444;
+      cursor: pointer;
+      padding: 15px;
+      width: 100%;
+      border: none;
+      outline: none;
+      text-align: left;
+      font-size: 18px;
+      transition: background-color 0.3s ease;
+    }
+    .accordion-header:hover {
+      background-color: #ddd;
+    }
+    .accordion-content {
+      padding: 0 15px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    .accordion-content p {
+      margin: 15px 0;
+    }
+    
+    /* Стили для формул */
+    .formula {
+      background-color: #e6f7ff;
+      border-left: 3px solid #1890ff;
+      padding: 10px;
+      font-family: monospace;
+      margin: 10px 0;
+    }
+    
+    /* Стили для блока решения */
+    .solution {
+      background-color: #f9f9f9;
+      border: 1px dashed #aaa;
+      padding: 10px;
+      font-style: italic;
+      margin-top: 10px;
+    }
+    
+    /* Таблица интегралов */
+    table.integral-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    table.integral-table th,
+    table.integral-table td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    
+    /* Стили для кнопки "Ответ" */
+    .toggle-solution {
+      background: #1890ff;
+      border: none;
+      border-radius: 3px;
+      color: #fff;
+      padding: 10px 15px;
+      margin: 10px 0;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .toggle-solution:hover {
+      background: #147cd4;
+    }
+  </style>
+  
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Переключение разделов аккордеона
+      const accordionHeaders = document.querySelectorAll('.accordion-header');
+      accordionHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+          const content = this.nextElementSibling;
+          if (content.style.maxHeight) {
+            // Закрываем раздел, если открыт
+            content.style.maxHeight = null;
+            this.classList.remove('active');
+          } else {
+            // Раскрываем раздел, устанавливая max-height равным фактической высоте содержимого
+            content.style.maxHeight = content.scrollHeight + "px";
+            this.classList.add('active');
+          }
+        });
+      });
+      
+      // Переключение отображения блока с решением при нажатии на кнопку "Ответ"
+      const toggleButtons = document.querySelectorAll('.toggle-solution');
+      toggleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const solutionDiv = this.nextElementSibling;
+          if (solutionDiv.style.display === "block") {
+            solutionDiv.style.display = "none";
+          } else {
+            solutionDiv.style.display = "block";
+          }
+          // Пересчитываем высоту родительского блока аккордеона, чтобы обновить область видимости
+          const parentAccordion = this.closest('.accordion-content');
+          if (parentAccordion && parentAccordion.style.maxHeight) {
+            parentAccordion.style.maxHeight = parentAccordion.scrollHeight + "px";
+          }
+        });
+      });
+    });
+  </script>
 </head>
-<header>
-    <div class="page-title" id="pageTitle">
-        <img src="icons/main.png" id="pageIcon" alt="">
-        <span id="pageName">Главная</span>
-    </div>
-</header>
 <body>
-    <div class="sidebar">
-        <ul>
-            <li class="menu-item">
-                <a href="index.html">
-                    <img src="icons/main.png" alt="Главная">
-                    <span>Главная</span>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="theory.html">
-                    <img src="icons/theory.png" alt="Теория">
-                    <span>Теория</span>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="zadaniya.html">
-                    <img src="icons/zadaniya.png" alt="Задания">
-                    <span>Задания</span>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="tests.html">
-                    <img src="icons/exam.png" alt="Тесты">
-                    <span>Тесты</span>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="videos.html">
-                    <img src="icons/video.png" alt="Видео">
-                    <span>Видео</span>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="glossary.html">
-                    <img src="icons/dictionary.png" alt="Глоссарий">
-                    <span>Глоссарий</span>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="info.html">
-                    <img src="icons/tetrad.png" alt="Тетрадь">
-                    <span>О тетради</span>
-                </a>
-            </li>                                    
-        </ul>
+  <header>
+    <div class="page-title" id="pageTitle">
+      <img src="icons/main.png" id="pageIcon" alt="Главная">
+      <span id="pageName">Главная</span>
     </div>
-
-    <div class="content">
-        <h1>Интегралы</h1>
-
-        <section class="theory-section">
-            <h2>1. Определение интеграла</h2>
-            <p>Интеграл — это сумма бесконечно малых величин. Он используется для вычисления площадей, длин, объемов и других величин.</p>
-            <div class="formula">∫ f(x) dx</div>
-        </section>
-
-        <section class="theory-section">
-            <h2>2. Основные свойства интегралов</h2>
-            <div class="formula">
-                <a>∫ (f(x) ± g(x)) dx = ∫ f(x) dx ± ∫ g(x) dx</a> <br>
-                <a>∫ kf(x) dx = k ∫ f(x) dx</a><br>
-                <a>∫ dx = x + C</a>
-            </div>
-        </section>
-
-        <section class="theory-section">
-            <h2>3. Таблица интегралов</h2>
-            <table class="integral-table">
-                <tr>
-                    <th>Функция</th>
-                    <th>Интеграл</th>
-                </tr>
-                <tr>
-                    <td>∫ x^n dx</td>
-                    <td>1/(n+1) * x^(n+1) + C</td>
-                </tr>
-                <tr>
-                    <td>∫ e^x dx</td>
-                    <td>e^x + C</td>
-                </tr>
-                <tr>
-                    <td>∫ sin(x) dx</td>
-                    <td>-cos(x) + C</td>
-                </tr>
-                <tr>
-                    <td>∫ cos(x) dx</td>
-                    <td>sin(x) + C</td>
-                </tr>
-            </table>
-        </section>
-
-        <section class="theory-section">
-            <h2>4. Пример нахождения интеграла</h2>
-            <p>Найти неопределенный интеграл: ∫ (3x² - 2x + 4) dx</p>
-            <div class="solution">
-                <p>∫ (3x² - 2x + 4) dx = (3/3)x³ - (2/2)x² + 4x + C</p>
-                <p><strong>Ответ:</strong> x³ - x² + 4x + C</p>
-            </div>
-        </section>
-
+  </header>
+  
+  <div class="sidebar">
+    <ul>
+      <li class="menu-item">
+        <a href="index.html">
+          <img src="icons/main.png" alt="Главная">
+          <span>Главная</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="theory.html">
+          <img src="icons/theory.png" alt="Теория">
+          <span>Теория</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="zadaniya.html">
+          <img src="icons/zadaniya.png" alt="Задания">
+          <span>Задания</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="tests.html">
+          <img src="icons/exam.png" alt="Тесты">
+          <span>Тесты</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="videos.html">
+          <img src="icons/video.png" alt="Видео">
+          <span>Видео</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="glossary.html">
+          <img src="icons/dictionary.png" alt="Глоссарий">
+          <span>Глоссарий</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="info.html">
+          <img src="icons/tetrad.png" alt="Тетрадь">
+          <span>О тетради</span>
+        </a>
+      </li>                                    
+    </ul>
+  </div>
+  
+  <div class="content">
+    <h1>Интегралы</h1>
+    <div class="accordion">
+      <!-- Тема 1 -->
+      <div class="accordion-item">
+        <button class="accordion-header">1. Определение интеграла</button>
+        <div class="accordion-content">
+          <p>Интеграл — это сумма бесконечно малых величин. Он используется для вычисления площадей, длин, объемов и других величин.</p>
+          <div class="formula">∫ f(x) dx</div>
+        </div>
+      </div>
+      
+      <!-- Тема 2 -->
+      <div class="accordion-item">
+        <button class="accordion-header">2. Основные свойства интегралов</button>
+        <div class="accordion-content">
+          <div class="formula">
+            <p>∫ (f(x) ± g(x)) dx = ∫ f(x) dx ± ∫ g(x) dx</p>
+            <p>∫ kf(x) dx = k ∫ f(x) dx</p>
+            <p>∫ dx = x + C</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Тема 3 -->
+      <div class="accordion-item">
+        <button class="accordion-header">3. Таблица интегралов</button>
+        <div class="accordion-content">
+          <table class="integral-table">
+            <tr>
+              <th>Функция</th>
+              <th>Интеграл</th>
+            </tr>
+            <tr>
+              <td>∫ x^n dx</td>
+              <td>1/(n+1) * x^(n+1) + C</td>
+            </tr>
+            <tr>
+              <td>∫ e^x dx</td>
+              <td>e^x + C</td>
+            </tr>
+            <tr>
+              <td>∫ sin(x) dx</td>
+              <td>-cos(x) + C</td>
+            </tr>
+            <tr>
+              <td>∫ cos(x) dx</td>
+              <td>sin(x) + C</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      
+      <!-- Тема 4 -->
+      <div class="accordion-item">
+        <button class="accordion-header">4. Пример нахождения интеграла</button>
+        <div class="accordion-content">
+          <p>Найти неопределенный интеграл: ∫ (3x² - 2x + 4) dx</p>
+          <button class="toggle-solution">Ответ</button>
+          <div class="solution" style="display: none;">
+            <p>∫ (3x² - 2x + 4) dx = (3/3)x³ - (2/2)x² + 4x + C</p>
+            <p><strong>Ответ:</strong> x³ - x² + 4x + C</p>
+          </div>
+        </div>
+      </div>
+      
     </div>
-    <footer class="site-footer">
-        <p>Тесляк Игорь 711/722 ТТЖТ 2025</p>
-    </footer>
+  </div>
+  
+  <footer class="site-footer">
+    <p>Тесляк Игорь 711/722 ТТЖТ 2025</p>
+  </footer>
 </body>
 </html>

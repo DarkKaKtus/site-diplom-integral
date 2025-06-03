@@ -223,10 +223,12 @@ document.addEventListener("DOMContentLoaded", function () {
         "theory.html": { title: "Теория", icon: "icons/theory.png" },
         "tests.html": { title: "Тесты", icon: "icons/exam.png" },
         "info.html": { title: "О тетради", icon: "icons/tetrad.png" },
-        "glossary.html": { title: "Глоссарий", icon: "icons/dictionary.png" }
+        "glossary.html": { title: "Глоссарий", icon: "icons/dictionary.png" },
+        "videos.html": { title: "Видео", icon: "icons/video.png" }
     };
 
-    const currentPage = window.location.pathname.split("/").pop();
+    const currentPage = window.location.pathname.split("/").pop().split("?")[0];
+
 
     if (pages[currentPage]) {
         pageIcon.src = pages[currentPage].icon;
@@ -564,3 +566,44 @@ function enableInteractions() {
     });
 }
 
+    document.addEventListener("DOMContentLoaded", function() {
+
+      // Функция для получения значения куки по имени
+      function getCookie(name) {
+        const value = "; " + document.cookie;
+        const parts = value.split("; " + name + "=");
+        if (parts.length === 2) return parts.pop().split(";").shift();
+      }
+
+      // Функция для установки куки
+      function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+          const date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+          expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      }
+
+      // Если куки установлено, скрываем блок introOverlay
+      if (getCookie("introShown")) {
+        const introOverlay = document.getElementById("introOverlay");
+        if (introOverlay) {
+          introOverlay.style.display = "none";
+        }
+      } else {
+        // Если куки нет – назначаем обработчик на кнопку "Начать"
+        const startButton = document.getElementById("startButton");
+        if (startButton) {
+          startButton.addEventListener("click", function() {
+            const introOverlay = document.getElementById("introOverlay");
+            if (introOverlay) {
+              introOverlay.style.display = "none";
+            }
+            // Сохраняем куки, чтобы блок не показывался снова (на 30 дней)
+            setCookie("introShown", "true", 30);
+          });
+        }
+      }
+    });

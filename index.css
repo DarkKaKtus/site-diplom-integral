@@ -27,6 +27,7 @@ a{
     transition: width 0.3s ease-in-out;
     position: fixed;
     top: 0;
+    z-index: 1100;
     left: 0;
 }
 
