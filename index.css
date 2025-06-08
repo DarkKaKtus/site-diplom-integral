@@ -83,6 +83,7 @@ a{
 .content {
     margin-left: 70px; /* отступ из-за бокового меню */
     padding: 5%;
+    display: flex;
     margin-top: 80px;
 }
 
@@ -554,4 +555,15 @@ ul#sortable li:hover {
 .task.incorrect {
     border: 2px solid red;
     background-color: #ffe6e6;
+}
+
+
+@media (max-width: 900px) {
+    .intro-content {
+        width: 400px;
+    }
+
+    .character-container{
+        display: none;
+    }
 }
