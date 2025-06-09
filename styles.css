@@ -71,11 +71,13 @@
       z-index: 1000;
 
     }
-    
-    .sidebar img {
-      width: 30px !important;
-      height: auto;
-    }
+.sidebar img,
+.offcanvas-body img {
+  width: 30px !important;
+  height: auto;
+}
+
+
     .sidebar:hover {
       width: 200px;
     }

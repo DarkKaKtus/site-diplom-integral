@@ -1,222 +1,363 @@
-const tests = {
-    // Тест на основные свойства интегралов
-    basic: [
-        { 
-            question: "Чему равен ∫ dx?", 
-            answers: ["x + C", "1 + C", "C"], 
-            correct: 0 
-        },
-        { 
-            question: "Чему равен ∫ 2x dx?", 
-            answers: ["x² + C", "2x + C", "x + C"], 
-            correct: 0 
-        },
-        { 
-            question: "Чему равен ∫ cos(x) dx?", 
-            answers: ["sin(x) + C", "-sin(x) + C", "cos(x) + C"], 
-            correct: 0 
-        },
-    ],
-    
-    // Тест на элементарные функции
-    elementary: [
-        { 
-            question: "Чему равен ∫ e^x dx?", 
-            answers: ["e^x + C", "ln(x) + C", "x e^x + C"], 
-            correct: 0 
-        },
-        { 
-            question: "Чему равен ∫ 1/x dx?", 
-            answers: ["ln|x| + C", "x ln(x) + C", "x + C"], 
-            correct: 0 
-        },
-        { 
-            question: "Чему равен ∫ sin(x) dx?", 
-            answers: ["-cos(x) + C", "cos(x) + C", "sin(x) + C"], 
-            correct: 0 
-        },
-    ],
-
-    // Тест на интегрирование по частям
-    parts: [
-        { 
-            question: "Какой результат при интегрировании ∫ x * e^x dx?", 
-            answers: ["x * e^x - e^x + C", "x * e^x + e^x + C", "e^x + x^2 + C"], 
-            correct: 0 
-        },
-        { 
-            question: "Какой результат при интегрировании ∫ x * sin(x) dx?", 
-            answers: ["-x * cos(x) + sin(x) + C", "x * cos(x) - sin(x) + C", "x * cos(x) + sin(x) + C"], 
-            correct: 0 
-        },
-    ],
-
-    // Тест на замену переменных
-    substitution: [
-        { 
-            question: "Чему равен ∫ (2x) * sqrt(1 + x^2) dx при замене t = 1 + x^2?", 
-            answers: ["sqrt(1 + x^2)^3 / 3 + C", "(1 + x^2)^(3/2) / 3 + C", "(1 + x^2)^2 + C"], 
-            correct: 1 
-        },
-        { 
-            question: "Какое выражение поддается замене переменной в ∫ 2x / sqrt(1 + x^2) dx?", 
-            answers: ["1 / sqrt(1 + x^2) + C", "ln(1 + x^2) + C", "sqrt(1 + x^2) + C"], 
-            correct: 0 
-        },
-    ],
-
-    // Тест на несобственные интегралы
-    improper: [
-        { 
-            question: "Чему равен ∫(1/x) dx от 1 до ∞?", 
-            answers: ["ln(x) от 1 до ∞", "lim x→∞ ln(x) - ln(1)", "∞"], 
-            correct: 1 
-        },
-        { 
-            question: "Как решить ∫ 1 / (x^2) dx от 1 до ∞?", 
-            answers: ["lim x→∞ [-1/x] от 1 до ∞", "ln(x) от 1 до ∞", "lim x→∞ [-x^2] от 1 до ∞"], 
-            correct: 0 
-        },
-    ],
-
-    // Тест на двойные интегралы
-    double: [
-        { 
-            question: "Как выглядит двойной интеграл для области, ограниченной x от 0 до 1 и y от 0 до x?", 
-            answers: ["∫∫ 1 dy dx", "∫∫ x dy dx", "∫∫ x^2 dy dx"], 
-            correct: 0 
-        },
-        { 
-            question: "Как вычислить ∫∫ (x^2 + y^2) dxdy для области, ограниченной x от 0 до 1 и y от 0 до 1?", 
-            answers: ["∫∫ (x^2 + y^2) dxdy = 1", "∫∫ (x^2 + y^2) dxdy = 1/3", "∫∫ (x^2 + y^2) dxdy = 2/3"], 
-            correct: 2 
-        },
-    ],
+// Объект с данными тестов — два варианта, по 10 вопросов в каждом
+const testsData = {
+  variant1: {
+    title: "Вариант 1. Основной тест по интегралам",
+    questions: [
+      {
+        id: 1,
+        question: "Что такое определённый интеграл?",
+        choices: [
+          "Предел суммы Римана при разбиении отрезка",
+          "Метод нахождения первообразной",
+          "Сумма бесконечно малых изменений функции",
+          "Площадь области под кривой"
+        ],
+        answer: 0
+      },
+      {
+        id: 2,
+        question: "Какое свойство интеграла позволяет разделить интеграл по [a, b] на отрезки [a, c] и [c, b]?",
+        choices: [
+          "Линейность",
+          "Аддитивность по промежутку",
+          "Монотонность",
+          "Дифференцируемость"
+        ],
+        answer: 1
+      },
+      {
+        id: 3,
+        question: "Что такое первообразная функции?",
+        choices: [
+          "Функция, производная которой равна данной функции",
+          "Интеграл функции",
+          "Обратная функция",
+          "Функция, равная постоянной"
+        ],
+        answer: 0
+      },
+      {
+        id: 4,
+        question: "Какой метод используется для вычисления интеграла сложной функции?",
+        choices: [
+          "Метод интегрирования по частям",
+          "Метод подстановки",
+          "Метод деления",
+          "Метод вероятностей"
+        ],
+        answer: 1
+      },
+      {
+        id: 5,
+        question: "Что означает линейность интеграла?",
+        choices: [
+          "Интеграл суммы равен сумме интегралов",
+          "Интеграл произведения равен произведению интегралов",
+          "Интеграл функции равен функции интеграла",
+          "Интеграл константы равен нулю"
+        ],
+        answer: 0
+      },
+      {
+        id: 6,
+        question: "Какова роль теоремы Фундамента в интегральном исчислении?",
+        choices: [
+          "Связывает дифференцирование и интегрирование",
+          "Обеспечивает правило замены переменной",
+          "Гарантирует существование интеграла",
+          "Делит область интегрирования"
+        ],
+        answer: 0
+      },
+      {
+        id: 7,
+        question: "Что является интерпретацией определённого интеграла в геометрии?",
+        choices: [
+          "Длина участка кривой",
+          "Площадь под графиком",
+          "Объём тела",
+          "Центр масс"
+        ],
+        answer: 1
+      },
+      {
+        id: 8,
+        question: "При каких условиях выполняется теорема о среднем значении интеграла?",
+        choices: [
+          "Функция непрерывна на [a, b]",
+          "Функция дифференцируема на [a, b]",
+          "Функция равна нулю",
+          "Функция ограничена"
+        ],
+        answer: 0
+      },
+      {
+        id: 9,
+        question: "Что такое неопределённый интеграл?",
+        choices: [
+          "Функция, производная которой равна данной, плюс константа",
+          "Интеграл без указания пределов",
+          "Интеграл с неопределёнными пределами",
+          "Предел сумм Римана"
+        ],
+        answer: 0
+      },
+      {
+        id: 10,
+        question: "Какой принцип лежит в основе интегрирования по частям?",
+        choices: [
+          "Замена переменной",
+          "Правило произведения для производных",
+          "Правило суммы",
+          "Элементарная функция"
+        ],
+        answer: 1
+      }
+    ]
+  },
+  variant2: {
+    title: "Вариант 2. Дополнительный тест по интегралам",
+    questions: [
+      {
+        id: 1,
+        question: "Что иллюстрирует определённый интеграл?",
+        choices: [
+          "Площадь области под графиком",
+          "Объём тела",
+          "Длину дуги",
+          "Предел суммы Римана"
+        ],
+        answer: 0
+      },
+      {
+        id: 2,
+        question: "Что такое первообразная функции?",
+        choices: [
+          "Функция, производная которой равна исходной",
+          "Функция-решение дифференциального уравнения",
+          "Результат интегрирования",
+          "Функция, обратная исходной"
+        ],
+        answer: 0
+      },
+      {
+        id: 3,
+        question: "Какой метод упрощает вычисление сложных интегралов?",
+        choices: [
+          "Метод интегрирования по частям",
+          "Метод подстановки",
+          "Метод деления",
+          "Метод экстраполяции"
+        ],
+        answer: 1
+      },
+      {
+        id: 4,
+        question: "Что означает свойство монотонности интеграла?",
+        choices: [
+          "Если функция неотрицательна, интеграл неотрицателен",
+          "Интеграл суммы равен сумме интегралов",
+          "Интеграл произведения равен произведению интегралов",
+          "Ничего из перечисленного"
+        ],
+        answer: 0
+      },
+      {
+        id: 5,
+        question: "Как вычисляется интеграл функции, равной константе?",
+        choices: [
+          "Константа умноженная на длину интервала",
+          "Константа плюс длина интервала",
+          "Неверно",
+          "Константа возводится в степень"
+        ],
+        answer: 0
+      },
+      {
+        id: 6,
+        question: "Какую роль играет аддитивность в интегральном исчислении?",
+        choices: [
+          "Разделение интервала интегрирования",
+          "Сложение функций",
+          "Объединение пределов",
+          "Умножение интегралов"
+        ],
+        answer: 0
+      },
+      {
+        id: 7,
+        question: "Что показывает теорема Фундамента анализа?",
+        choices: [
+          "Связь интегрирования и дифференцирования",
+          "Замена переменной",
+          "Метод частного дифференцирования",
+          "Интегральное уравнение"
+        ],
+        answer: 0
+      },
+      {
+        id: 8,
+        question: "Как называется интеграл без указания пределов интегрирования?",
+        choices: [
+          "Неопределённый интеграл",
+          "Определённый интеграл",
+          "Локализованный интеграл",
+          "Инфинитезимальный интеграл"
+        ],
+        answer: 0
+      },
+      {
+        id: 9,
+        question: "Какова геометрическая интерпретация определённого интеграла?",
+        choices: [
+          "Площадь под кривой",
+          "Объём твердого тела",
+          "Длина линии",
+          "Угловая мера"
+        ],
+        answer: 0
+      },
+      {
+        id: 10,
+        question: "Что позволяет применять метод интегрирования по частям?",
+        choices: [
+          "Выделить сложное произведение функций",
+          "Найти первообразную",
+          "Разделить интеграл на две части",
+          "Определить константу интегрирования"
+        ],
+        answer: 0
+      }
+    ]
+  }
 };
 
-let currentTest = [];
+// Глобальные переменные для отслеживания текущего состояния теста
+let currentTest;
 let currentQuestionIndex = 0;
-let correctAnswers = 0;
-let incorrectAnswers = [];
+let score = 0;
+// Массив для сохранения ответов пользователя
+let userAnswers = [];
 
-function startTest(testName) {
-    // Скрыть выбор тестов
-    document.getElementById("test-selection").classList.add("hidden");
-
-    // Скрыть все тесты (кнопки выбора)
-    document.querySelectorAll(".test-btn").forEach(button => {
-        button.classList.add("hidden");
-    });
-
-    currentTest = tests[testName];
-    currentQuestionIndex = 0;
-    correctAnswers = 0;
-    incorrectAnswers = [];
-
-    // Показать выбранный тест
-    const testContainer = document.getElementById("test-container");
-    testContainer.classList.remove("hidden");
-
-    // Обновляем стили контейнера, чтобы он был по центру
-    testContainer.style.display = "block"; // Гарантируем отображение
-
-    showQuestion();
+// Функция для запуска теста выбранного варианта
+function startTest(variant) {
+  currentTest = testsData[variant];
+  currentQuestionIndex = 0;
+  score = 0;
+  userAnswers = [];
+  document.getElementById('variant-selection').style.display = 'none';
+  const testContainer = document.getElementById('test-container');
+  testContainer.style.display = 'block';
+  showQuestion();
 }
 
+// Функция для отображения текущего вопроса
 function showQuestion() {
-    const questionData = currentTest[currentQuestionIndex];
-    const questionDiv = document.getElementById("question");
-    const answersDiv = document.getElementById("answers");
-    const resultDiv = document.getElementById("result");
-
-    questionDiv.innerHTML = questionData.question;
-    answersDiv.innerHTML = "";
-    resultDiv.classList.add("hidden");
-
-    questionData.answers.forEach((answer, index) => {
-        const button = document.createElement("button");
-        button.classList.add("answer");
-        button.innerText = answer;
-        button.onclick = () => checkAnswer(index);
-        answersDiv.appendChild(button);
-    });
+  const testContainer = document.getElementById('test-container');
+  const currentQuestion = currentTest.questions[currentQuestionIndex];
+  
+  let html = "";
+  // Кнопка "Назад к выбору вариантов"
+  html += `<button type="button" class="btn btn-secondary mb-3" onclick="backToVariants()">← Назад к выбору вариантов</button>`;
+  // Заголовок теста и номер текущего вопроса
+  html += `<h3 class="mb-4">${currentTest.title}</h3>`;
+  html += `<form id="questionForm">`;
+  html += `<div class="mb-4">`;
+  html += `<p><strong>Вопрос ${currentQuestionIndex + 1} из ${currentTest.questions.length}.</strong> ${currentQuestion.question}</p>`;
+  
+  currentQuestion.choices.forEach((choice, cIndex) => {
+    const radioId = `q${currentQuestionIndex}_choice${cIndex}`;
+    html += `<div class="form-check">
+               <input class="form-check-input" type="radio" name="answer" id="${radioId}" value="${cIndex}">
+               <label class="form-check-label" for="${radioId}">${choice}</label>
+             </div>`;
+  });
+  
+  html += `</div>`;
+  // Если последний вопрос, меняем текст кнопки
+  if (currentQuestionIndex < currentTest.questions.length - 1) {
+    html += `<button type="submit" class="btn btn-primary">Далее</button>`;
+  } else {
+    html += `<button type="submit" class="btn btn-primary">Завершить тест</button>`;
+  }
+  html += `</form>`;
+  
+  testContainer.innerHTML = html;
+  
+  // Назначаем обработчик на форму вопроса
+  document.getElementById('questionForm').addEventListener('submit', handleNext);
 }
 
-function checkAnswer(selectedIndex) {
-    const questionData = currentTest[currentQuestionIndex];
-    const answerButtons = document.querySelectorAll(".answer");
-
-    answerButtons.forEach((btn, index) => {
-        if (index === questionData.correct) {
-            btn.classList.add("correct");
-        } 
-        if (index === selectedIndex && index !== questionData.correct) {
-            btn.classList.add("incorrect");
-        }
-        btn.onclick = null; // отключить дальнейшие клики
-    });
-
-    if (selectedIndex === questionData.correct) {
-        correctAnswers++;
-    } else {
-        incorrectAnswers.push({
-            question: questionData.question,
-            correctAnswer: questionData.answers[questionData.correct],
-        });
-    }
-
-    setTimeout(() => {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < currentTest.length) {
-            showQuestion();
-        } else {
-            showResult();
-        }
-    }, 1000);
-}
-
-function showResult() {
-    document.getElementById("question").innerHTML = `Ваш результат: ${correctAnswers} из ${currentTest.length}`;
-    document.getElementById("answers").innerHTML = "";
-
-    const resultDiv = document.getElementById("result");
-    resultDiv.classList.remove("hidden");
-
-    let resultHTML = "<h3>Ошибки:</h3>";
-    if (incorrectAnswers.length === 0) {
-        resultHTML += "<p>Отлично! Все ответы правильные!</p>";
-    } else {
-        incorrectAnswers.forEach(item => {
-            resultHTML += `<p><strong>Вопрос:</strong> ${item.question}<br><strong>Правильный ответ:</strong> ${item.correctAnswer}</p>`;
-        });
-    }
-
-    resultDiv.innerHTML = resultHTML;
-
-}
-
-function startTest(testName) {
-    // Скрыть все тесты
-    document.querySelectorAll(".test-btn").forEach(button => {
-        button.classList.add("hidden");
-    });
-
-    currentTest = tests[testName];
-    currentQuestionIndex = 0;
-    correctAnswers = 0;
-    incorrectAnswers = [];
-
-    // Скрыть выбор тестов
-    document.getElementById("test-selection").classList.add("hidden");
-
-    // Показать выбранный тест
-    const testContainer = document.getElementById("test-container");
-    testContainer.classList.remove("hidden");
-
-    // Обновляем стили контейнера, чтобы он был по центру
-    testContainer.style.display = "block"; // Гарантируем отображение
-
+// Обработчик перехода к следующему вопросу
+function handleNext(event) {
+  event.preventDefault();
+  const selected = document.querySelector('input[name="answer"]:checked');
+  if (!selected) {
+    alert('Пожалуйста, выберите ответ');
+    return;
+  }
+  
+  const answer = parseInt(selected.value);
+  // Сохраняем ответ пользователя для текущего вопроса
+  userAnswers[currentQuestionIndex] = answer;
+  
+  // Проверка правильности ответа
+  if (answer === currentTest.questions[currentQuestionIndex].answer) {
+    score++;
+  }
+  
+  currentQuestionIndex++;
+  
+  // Если ещё есть вопрос, показываем следующий, иначе — выводим результат
+  if (currentQuestionIndex < currentTest.questions.length) {
     showQuestion();
+  } else {
+    showResults();
+  }
 }
 
+// Функция для отображения результата теста и деталей неверных ответов
+function showResults() {
+  const testContainer = document.getElementById('test-container');
+  let html = "";
+  html += `<button type="button" class="btn btn-secondary mb-3" onclick="backToVariants()">← Назад к выбору вариантов</button>`;
+  html += `<h3 class="mb-4">Результаты теста</h3>`;
+  html += `<div class="alert alert-info">Ваш результат: ${score} из ${currentTest.questions.length}</div>`;
+  
+  // Перебираем вопросы и выводим информацию по тем, на которые ответили неверно
+  let incorrectExists = false;
+  html += `<div class="mt-4">`;
+  html += `<h4>Ошибки:</h4>`;
+  
+  currentTest.questions.forEach((q, index) => {
+    // Если ответ неверный (или не был дан)
+    if (userAnswers[index] !== q.answer) {
+      incorrectExists = true;
+      // Определяем, какой вариант выбрал пользователь (если хоть что-то выбрано)
+      const userChoice = (userAnswers[index] !== undefined) 
+                         ? q.choices[userAnswers[index]] 
+                         : "Без ответа";
+      const correctChoice = q.choices[q.answer];
+      
+      html += `<div class="card mb-3">
+                 <div class="card-body">
+                   <p><strong>Вопрос ${index + 1}:</strong> ${q.question}</p>
+                   <p><strong>Ваш ответ:</strong> ${userChoice}</p>
+                   <p><strong>Правильный ответ:</strong> ${correctChoice}</p>
+                 </div>
+               </div>`;
+    }
+  });
+  if (!incorrectExists) {
+    html += `<p>Поздравляем, все ответы верны!</p>`;
+  }
+  html += `</div>`;
+  
+  testContainer.innerHTML = html;
+}
 
+// Функция возврата к выбору вариантов теста
+function backToVariants() {
+  document.getElementById('test-container').style.display = 'none';
+  document.getElementById('variant-selection').style.display = 'block';
+}
