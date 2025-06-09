@@ -3,25 +3,7 @@ a{
     align-items: center;
 }
 
-.sidebar {
-    width: 60px;
-    height: 100vh;
-    background: #333;
-    overflow: hidden;
-    transition: width 0.3s ease-in-out;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
 
-.sidebar:hover {
-    width: 200px;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 10px;
-}
 
 .menu-item {
     display: flex;
@@ -63,9 +45,6 @@ a{
     opacity: 1;
 }
 
-.content {
-    margin-top: 80px; /* Добавляем отступ сверху */
-}
 
 
 

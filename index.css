@@ -1,17 +1,12 @@
 * {
     margin: 0;
     padding: 0;
-    text-align: center;
     box-sizing: border-box;
 }
 
 body {
     min-height: 100vh;
-    display: flex;
     font-family: Arial, sans-serif;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
 }
 
 a{
@@ -31,9 +26,7 @@ a{
     left: 0;
 }
 
-.sidebar:hover {
-    width: 200px;
-}
+
 
 .sidebar ul {
     list-style: none;
@@ -81,11 +74,13 @@ a{
 }
 
 .content {
-    margin-left: 70px; /* отступ из-за бокового меню */
-    padding: 5%;
-    display: flex;
-    margin-top: 80px;
+    margin-left: 60px;
+    transition: margin-left 0.3s ease;
 }
+.sidebar:hover ~ .content {
+    margin-left: 200px;
+}
+
 
 
 .button-container {
@@ -192,41 +187,6 @@ a{
     display: none;
 }
 
-.matching-task {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px 0;
-    position: relative;
-}
-
-.matching-task .left, .matching-task .right {
-    width: 45%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.matching-task p {
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background: #f1f1f1;
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-}
-
-.matching-task p:hover {
-    background: #e0e0e0;
-    transform: scale(1.05);
-}
-
-.matching-task p:active {
-    transform: scale(0.95);
-}
 
 #connections {
     position: absolute;
@@ -623,29 +583,18 @@ ul#sortable li:hover {
     }
 
 
-@media (max-width: 900px) {
-    .intro-content {
-        width: 400px;
-    }
-
-    .character-container{
-        display: none;
-    }
-
-    body{
-    display: flex;
-    font-family: Arial, sans-serif;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    }
-
-    .home-extra{
-        width: 300px;
-        padding: 0px;
-    }
-
-    .content{
-        padding: 0px;
-    }
+.burger-menu {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    font-size: 28px;
+    color: white;
+    background: #333;
+    padding: 10px 15px;
+    border-radius: 5px;
+    z-index: 1200;
+    cursor: pointer;
 }
+
+
