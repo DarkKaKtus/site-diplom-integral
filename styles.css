@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 
 .matching-task {
     position: relative;
@@ -50,8 +54,10 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
     }
+
     
     .wrapper {
     flex: 1;
@@ -378,6 +384,26 @@ button:hover {
     color: black;
 }
 
+
+
+#test-container > button{
+    background-color: rgb(109, 109, 243);
+    border: 1px solid #448;
+    border-radius: 6px;
+    padding: 10px 16px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#test-container > button:hover{
+    background-color: #cce;
+    border-color: #66f;
+    color: black;
+}
+
+
 .check-button {
     margin-top: 30px;
     padding: 12px 20px;
@@ -480,4 +506,60 @@ button:hover {
 
 .drag-over {
   border: 2px dashed #007bff;
+}
+
+
+/* ГЛОССАРИЙ */
+
+
+    .sidebar-desktop {
+      background: #f8f9fa;
+      min-height: 100vh;
+      padding-top: 1rem;
+      margin-left: -15px; 
+    }
+
+    .term-section {
+      background: #fff;
+      border-left: 4px solid #007bff;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 0.25rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    .term-section h3 {
+      font-weight: 600;
+    }
+
+    .glossary-content {
+      margin-left: -15px;
+    }
+
+    .letter-nav {
+      margin-bottom: 1.5rem;
+    }
+    .letter-nav .nav-link {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #007bff;
+      border: 1px solid #007bff;
+      border-radius: 0.25rem;
+      margin-right: 0.5rem;
+      margin-top: 0.5rem;
+      padding: 0.5rem 0.75rem;
+    }
+    .letter-nav .nav-link:hover,
+    .letter-nav .nav-link:focus {
+      background-color: #007bff;
+      color: #fff;
+    }
+    .letter-nav .nav-link.active {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+.main-centered {
+  max-width: 960px; /* можно 1000px, если хочешь шире */
+  margin: 0 auto;
+  width: 100%;
 }

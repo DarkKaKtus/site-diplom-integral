@@ -138,7 +138,7 @@
 
     <main class="main-content">
       <div class="page-title text-center mt-4">
-        <img src="icons/txt.png" id="img-txt" alt="">
+        <img src="icons/che.png" id="img-txt" alt="">
       </div>
 
       <div class="container mt-4">
@@ -158,5 +158,22 @@
   <footer>
     <p class="mb-0">Тесляк Игорь 711/722 ТТЖТ 2025</p>
   </footer>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const intro = document.getElementById("introOverlay");
+      const startBtn = document.getElementById("startButton");
+
+      // Показывать интро только если еще не показано
+      if (localStorage.getItem("introShown") === "true") {
+        intro.classList.add("hidden");
+      }
+
+      startBtn.addEventListener("click", function () {
+        intro.classList.add("hidden");
+        localStorage.setItem("introShown", "true");
+      });
+    });
+  </script>
 </body>
 </html>

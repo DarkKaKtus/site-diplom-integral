@@ -144,3 +144,18 @@ function backToVariants() {
   document.getElementById("variantSelection").style.display = "block";
   document.getElementById("variantTasks").style.display = "none";
 }
+
+
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash;
+  if (hash) {
+    const target = document.querySelector(hash);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+      // Можно также подсветить:
+      target.style.backgroundColor = '#ffffcc';
+    }
+  }
+});
+
+

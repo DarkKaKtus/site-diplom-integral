@@ -11,60 +11,6 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <script defer src="script.js"></script>
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-      font-family: 'Poppins', sans-serif;
-    }
-    /* Оформление для десктопного сайдбара */
-    .sidebar-desktop {
-      background: #f8f9fa;
-      min-height: 100vh;
-      padding-top: 1rem;
-      margin-left: -15px; /* смещаем влево */
-    }
-    /* Выделение блоков с терминами */
-    .term-section {
-      background: #fff;
-      border-left: 4px solid #007bff;
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-      border-radius: 0.25rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-    .term-section h3 {
-      font-weight: 600;
-    }
-    /* Смещение основного контента влево */
-    .glossary-content {
-      margin-left: -15px;
-    }
-    /* Красивее навигация по буквам */
-    .letter-nav {
-      margin-bottom: 1.5rem;
-    }
-    .letter-nav .nav-link {
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: #007bff;
-      border: 1px solid #007bff;
-      border-radius: 0.25rem;
-      margin-right: 0.5rem;
-      padding: 0.5rem 0.75rem;
-    }
-    .letter-nav .nav-link:hover,
-    .letter-nav .nav-link:focus {
-      background-color: #007bff;
-      color: #fff;
-    }
-    .letter-nav .nav-link.active {
-      background-color: #007bff;
-      color: #fff;
-    }
-  </style>
 </head>
 <body>
   <!-- Mobile: Offcanvas-меню -->
@@ -184,7 +130,7 @@
   <!-- Основной контент страницы -->
   <div class="container-fluid">
     <div class="row">
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <main class="main-centered px-md-4">
         <!-- Заголовок страницы -->
         <div class="pt-3 pb-2 mb-3 border-bottom">
           <h1 class="h2">Глоссарий</h1>
@@ -193,30 +139,26 @@
         <!-- Навигация по буквам в виде nav-pills -->
         <div class="letter-nav mb-4">
           <ul class="nav justify-content-center flex-wrap">
-            <li class="nav-item">
-              <a class="nav-link" href="#А">А</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#В">В</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#И">И</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#Н">Н</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#О">О</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#П">П</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#С">С</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#Ч">Ч</a>
-            </li>
+          <li class="nav-item"><a class="nav-link" href="#А">А</a></li>
+          <li class="nav-item"><a class="nav-link" href="#В">В</a></li>
+          <li class="nav-item"><a class="nav-link" href="#Г">Г</a></li>
+          <li class="nav-item"><a class="nav-link" href="#Д">Д</a></li>
+          <li class="nav-item"><a class="nav-link" href="#Е">Е</a></li>
+          <li class="nav-item"><a class="nav-link" href="#И">И</a></li>
+          <li class="nav-item"><a class="nav-link" href="#К">К</a></li>
+          <li class="nav-item"><a class="nav-link" href="#Л">Л</a></li>
+          <li class="nav-item"><a class="nav-link" href="#М">М</a></li>
+          <li class="nav-item"><a class="nav-link" href="#Н">Н</a></li>
+          <li class="nav-item"><a class="nav-link" href="#О">О</a></li>
+          <li class="nav-item"><a class="nav-link" href="#П">П</a></li>
+          <li class="nav-item"><a class="nav-link" href="#Р">Р</a></li>
+          <li class="nav-item"><a class="nav-link" href="#С">С</a></li>
+          <li class="nav-item"><a class="nav-link" href="#Т">Т</a></li>
+          <li class="nav-item"><a class="nav-link" href="#У">У</a></li>
+          <li class="nav-item"><a class="nav-link" href="#Ч">Ч</a></li>
+          <li class="nav-item"><a class="nav-link" href="#Э">Э</a></li>
+
+
           </ul>
         </div>
 
@@ -237,6 +179,32 @@
             <div class="mb-3">
               <h4>Верхний предел (Upper Limit)</h4>
               <p>Верхняя граница интервала, на котором вычисляется определённый интеграл. Например, в интеграле ∫[a, b] f(x) dx, b является верхним пределом.</p>
+            </div>
+          </div>
+                              <!-- Блок "Г" -->
+          <div id="Г" class="term-section">
+            <h3 class="mb-3">Г</h3>
+            <div class="mb-3">
+              <h4>График функции (Function Graph)</h4>
+              <p>Графическое представление зависимости между переменными. Используется для визуализации подынтегральной функции.</p>
+            </div>
+          </div>
+
+          <!-- Блок "Д" -->
+          <div id="Д" class="term-section">
+            <h3 class="mb-3">Д</h3>
+            <div class="mb-3">
+              <h4>Дифференцируемость (Differentiability)</h4>
+              <p>Свойство функции иметь производную в каждой точке области. Необходимое условие для применения многих методов интегрирования.</p>
+            </div>
+          </div>
+
+          <!-- Блок "Е" -->
+          <div id="Е" class="term-section">
+            <h3 class="mb-3">Е</h3>
+            <div class="mb-3">
+              <h4>Единичная функция (Unit Function)</h4>
+              <p>Функция, равная 1 на всём определённом интервале. Часто используется при определении простых интегралов.</p>
             </div>
           </div>
 
@@ -260,6 +228,34 @@
               <p>Обобщение интеграла Римана, позволяющее интегрировать более широкий класс функций, включая разрывные.</p>
             </div>
           </div>
+
+          <!-- Блок "К" -->
+          <div id="К" class="term-section">
+            <h3 class="mb-3">К</h3>
+            <div class="mb-3">
+              <h4>Кривая (Curve)</h4>
+              <p>Непрерывная линия, отображающая зависимость между переменными. Площадь под кривой часто вычисляется с помощью интегралов.</p>
+            </div>
+          </div>
+
+          <!-- Блок "Л" -->
+          <div id="Л" class="term-section">
+            <h3 class="mb-3">Л</h3>
+            <div class="mb-3">
+              <h4>Линейность интеграла (Linearity of Integral)</h4>
+              <p>Свойство, позволяющее выносить константы за знак интеграла и складывать/вычитать интегралы функций: ∫(af + bg)dx = a∫f dx + b∫g dx.</p>
+            </div>
+          </div>
+
+          <!-- Блок "М" -->
+          <div id="М" class="term-section">
+            <h3 class="mb-3">М</h3>
+            <div class="mb-3">
+              <h4>Мера множества (Measure)</h4>
+              <p>Обобщение длины, площади и объема, используемое в теории интеграла Лебега для описания «размера» множества.</p>
+            </div>
+          </div>
+
 
           <!-- Блок "Н" -->
           <div id="Н" class="term-section">
@@ -299,6 +295,15 @@
               <p>Метод нахождения интеграла через предел суммы разбиений интервала, лежащий в основе определения интеграла Римана.</p>
             </div>
           </div>
+          
+          <!-- Блок "Р" -->
+          <div id="Р" class="term-section">
+            <h3 class="mb-3">Р</h3>
+            <div class="mb-3">
+              <h4>Разбиение (Partition)</h4>
+              <p>Деление отрезка на подотрезки при построении сумм Римана для определения интеграла.</p>
+            </div>
+          </div>
 
           <!-- Блок "С" -->
           <div id="С" class="term-section">
@@ -312,7 +317,22 @@
               <p>Интеграл, содержащий особенности (например, разрывы или асимптоты), требующий специальных методов вычисления.</p>
             </div>
           </div>
-
+                    <!-- Блок "Т" -->
+          <div id="Т" class="term-section">
+            <h3 class="mb-3">Т</h3>
+            <div class="mb-3">
+              <h4>Точка разрыва (Discontinuity)</h4>
+              <p>Точка, в которой функция не является непрерывной. Может влиять на существование определённого интеграла.</p>
+            </div>
+          </div>
+          <!-- Блок "У" -->
+          <div id="У" class="term-section">
+            <h3 class="mb-3">У</h3>
+            <div class="mb-3">
+              <h4>Условная сходимость (Conditional Convergence)</h4>
+              <p>Свойство несобственного интеграла сходиться при определённых условиях, несмотря на расходимость отдельных частей.</p>
+            </div>
+          </div>
           <!-- Блок "Ч" -->
           <div id="Ч" class="term-section">
             <h3 class="mb-3">Ч</h3>
@@ -325,6 +345,19 @@
               <p>Метод, схожий с интегрированием по частям, используется, когда интегрируется лишь часть функции или её состава.</p>
             </div>
           </div>
+
+
+
+
+          <!-- Блок "Э" -->
+          <div id="Э" class="term-section">
+            <h3 class="mb-3">Э</h3>
+            <div class="mb-3">
+              <h4>Экстремум функции (Extremum)</h4>
+              <p>Максимальное или минимальное значение функции на определённом интервале. Иногда используется в задачах на оптимизацию с применением интегралов.</p>
+            </div>
+          </div>
+
         </div>
       </main>
     </div>
