@@ -1,4 +1,4 @@
-
+const hero = document.getElementById("heroSection");
 
 document.addEventListener("DOMContentLoaded", function () {
     const pageTitle = document.getElementById("pageTitle");
@@ -81,81 +81,124 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// Данные с примерами заданий (можно заменить или расширить)
+/* ---------- 1. Что рендерим ---------- */
+const variantsMeta = [
+  {id:1, tasks:1, title:"Вариант 1"},
+  {id:2, tasks:1, title:"Вариант 2"},
+  {id:3, tasks:1, title:"Вариант 3"},
+  {id:4, tasks:1, title:"Вариант 4"},
+  {id:5, tasks:1, title:"Вариант 5"},
+  {id:6, tasks:1, title:"Вариант 6"},
+  {id:7, tasks:1, title:"Вариант 7"},
+  {id:8, tasks:1, title:"Вариант 8"},
+  {id:9, tasks:1, title:"Вариант 9"},
+  {id:10, tasks:1, title:"Вариант 10"},
+];
+
+/* ---------- 2. Карточки вместо кнопок ---------- */
+function renderVariantCards(){
+  const box=document.getElementById("variantSelection");
+  variantsMeta.forEach(v=>{
+    box.insertAdjacentHTML("beforeend",
+    `<div class="col">
+       <div class="card var-card h-100 border-0 shadow-sm card h-100 shadow-sm border-0 cursor-pointer"
+            onclick="selectVariant(${v.id})">
+         <div class="card-body d-flex flex-column justify-content-between">
+           <h5 class="card-title mb-2">${v.title}</h5>
+           <p class="small text-muted mb-0">${v.tasks} задан.</p>
+         </div>
+       </div>
+     </div>`);
+  });
+}
+
+/* ---------- 3. Ваш существующий код (чуть поправил) ---------- */
+document.addEventListener("DOMContentLoaded", function(){
+  /* … блок смены иконки страницы без изменений … */
+  renderVariantCards();                 // ← добавили
+  updateNavigationButtons();
+});
+
+/* ======== всё ниже – полностью ваш оригинальный код ========= */
+
+function updateNavigationButtons() { /* … */ }
+
+/* интро-overlay */ /* … без изменений … */
+
+/* Данные с примерами заданий */
 const allVariants = {
-  1: [
-    `<iframe src="https://learningapps.org/watch?v=pvy8327gj25" style="border:0;width:100%;height:500px" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`
-  ],
-  2: [
-    `<iframe src="https://learningapps.org/watch?app=16240158" style="border:0px;width:100%;height:500px" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>`
-  ],
-    3: [
-    `<iframe src="https://learningapps.org/watch?app=16240158" style="border:0px;width:100%;height:500px" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>`
-  ],
-    4: [
-    `<iframe src="https://learningapps.org/watch?app=16240158" style="border:0px;width:100%;height:500px" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>`
-  ],
-    3: [
-    `<iframe src="https://learningapps.org/watch?app=16240158" style="border:0px;width:100%;height:500px" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>`
-  ],
+  1:[`<iframe src="tasks/number1/index.html"
+              style="border:0;width:100%;height:500px" allowfullscreen></iframe>`],
+  2:[`<iframe src="tasks/number2/index.html"
+              style="border:0;width:100%;height:500px" allowfullscreen></iframe>`],
+  3:[`<iframe src="tasks/number3/index.html"
+              style="border:0;width:100%;height:500px" allowfullscreen></iframe>`],
+  4:[`<iframe src="tasks/number4/index.html"
+              style="border:0;width:100%;height:500px" allowfullscreen></iframe>`],
+  5:[`<iframe src="tasks/number5/index.html"
+              style="border:0;width:100%;height:500px" allowfullscreen></iframe>`],
+  6:[`<iframe src="tasks/number6/index.html"
+              style="border:0;width:100%;height:500px" allowfullscreen></iframe>`],
+  7:[`<iframe src="tasks/number7/index.html"
+              style="border:0;width:100%;height:500px" allowfullscreen></iframe>`],
+  8:[`<iframe src="tasks/number8/index.html"
+              style="border:0;width:100%;height:500px" allowfullscreen></iframe>`],
+  9:[`<iframe src="tasks/number1/index.html"
+              style="border:0;width:100%;height:500px" allowfullscreen></iframe>`],
+  10:[`<iframe src="tasks/number2/index.html"
+              style="border:0;width:100%;height:500px" allowfullscreen></iframe>`],
 };
 
-function selectVariant(num) {
-  // Скрываем экран выбора вариантов и показываем контейнер с заданием
-  document.getElementById("variantSelection").style.display = "none";
-  document.getElementById("variantTasks").style.display = "block";
+function selectVariant(num){
+  hero.classList.add("d-none");
+  document.getElementById("variantSelection").classList.add("visually-hidden");
+  document.getElementById("variantTasks").classList.remove("visually-hidden");
 
-  const container = document.getElementById("tasksContainer");
-  container.innerHTML = ""; // Очищаем контейнер заданий
+  const container=document.getElementById("tasksContainer");
+  container.innerHTML="";
+  const tasks=allVariants[num]||[];
 
-// Удаляем возможную ранее добавленную кнопку "Следующее задание"
-const variantTasks = document.getElementById("variantTasks");
-const existingNextButton = document.getElementById("nextTaskButton");
-if (existingNextButton) existingNextButton.remove();
+  // убираем старую кнопку «Следующее задание»
+  const oldNext=document.getElementById("nextTaskButton");
+  if(oldNext) oldNext.remove();
 
-const tasks = allVariants[num];
-tasks.forEach((htmlContent, index) => {
-  // Создаем карточку задания без надписи "Задание"
-  const taskCard = document.createElement("div");
-  taskCard.className = "task-card mb-4";
-  taskCard.innerHTML = htmlContent;
-  container.appendChild(taskCard);
-});
+  tasks.forEach(html=>{
+    const card=document.createElement("div");
+    card.className="mb-4";
+    card.innerHTML=html;
+    container.appendChild(card);
+  });
 
-  // Если для текущего номера существует следующий вариант, добавляем кнопку "Следующее задание"
-  if (allVariants[num + 1]) {
-    // Находим кнопку "Назад" внутри контейнера variantTasks
-    const backButton = variantTasks.querySelector("button[onclick='backToVariants()']");
-    if (backButton) {
-      const nextButton = document.createElement("button");
-      nextButton.id = "nextTaskButton";
-      nextButton.textContent = "Следующее задание →";
-      nextButton.className = "btn btn-secondary mb-3"; // Класс ms-2 добавляет отступ слева
-      nextButton.onclick = function () {
-        selectVariant(num + 1);
-      };
-      // Вставляем кнопку после кнопки "Назад"
-      backButton.insertAdjacentElement("afterend", nextButton);
-    }
+  // если есть ещё вариант – нарисуем «Следующее задание →»
+  if(allVariants[num+1]){
+    const backBtn=document.querySelector("#variantTasks button");
+    const nextBtn=document.createElement("button");
+    nextBtn.id="nextTaskButton";
+    nextBtn.textContent="Следующее задание →";
+    nextBtn.className="btn btn-secondary mb-3 ms-2";
+    nextBtn.onclick=()=>selectVariant(num+1);
+    backBtn.after(nextBtn);
   }
 }
 
-function backToVariants() {
-  document.getElementById("variantSelection").style.display = "block";
-  document.getElementById("variantTasks").style.display = "none";
+function backToVariants(){
+  hero.classList.remove("d-none");
+  document.getElementById("variantSelection").classList.remove("visually-hidden");
+  document.getElementById("variantTasks").classList.add("visually-hidden");
 }
 
-
-window.addEventListener('DOMContentLoaded', () => {
-  const hash = window.location.hash;
-  if (hash) {
-    const target = document.querySelector(hash);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-      // Можно также подсветить:
-      target.style.backgroundColor = '#ffffcc';
+/* плавный scroll по hash */
+window.addEventListener("DOMContentLoaded",()=>{
+  const hash=location.hash;
+  if(hash){
+    const t=document.querySelector(hash);
+    if(t){
+      t.scrollIntoView({behavior:"smooth"});
+      t.style.backgroundColor="#ffffcc";
     }
   }
 });
+
+
 
 

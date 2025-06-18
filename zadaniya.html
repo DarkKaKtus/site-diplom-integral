@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="styles/bootstrap.min.css" rel="stylesheet">
   <!-- Ваши стили -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles/styles.css">
   
   <!-- Bootstrap JS Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="styles/bootstrap.bundle.min.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -126,62 +126,34 @@
     </ul>
   </nav>
   
-  <!-- Основной контейнер страницы -->
-  <div class="wrapper">
-    <main class="main-content" style="margin-left:70px;">
-      <div class="container">
-        <!-- Заголовок страницы -->
 
-        
-<div id="variantSelection" class="mt-5">
-  <h2 class="text-center">Выберите вариант заданий</h2>
-  <div class="mt-4 row row-cols-2 row-cols-sm-3 row-cols-md-5 g-4" style="max-width:650px; margin: 0 auto;">
-    <div class="col">
-      <button class="btn btn-primary w-100 py-2 fs-6 text-nowrap text-center" onclick="selectVariant(1)">Вариант 1</button>
-    </div>
-    <div class="col">
-      <button class="btn btn-primary w-100 py-2 fs-6 text-nowrap text-center" onclick="selectVariant(2)">Вариант 2</button>
-    </div>
-    <div class="col">
-      <button class="btn btn-primary w-100 py-2 fs-6 text-nowrap text-center" onclick="selectVariant(3)">Вариант 3</button>
-    </div>
-    <div class="col">
-      <button class="btn btn-primary w-100 py-2 fs-6 text-nowrap text-center" onclick="selectVariant(4)">Вариант 4</button>
-    </div>
-    <div class="col">
-      <button class="btn btn-primary w-100 py-2 fs-6 text-nowrap text-center" onclick="selectVariant(5)">Вариант 5</button>
-    </div>
-    <div class="col">
-      <button class="btn btn-primary w-100 py-2 fs-6 text-nowrap text-center" onclick="selectVariant(6)">Вариант 6</button>
-    </div>
-    <div class="col">
-      <button class="btn btn-primary w-100 py-2 fs-6 text-nowrap text-center" onclick="selectVariant(7)">Вариант 7</button>
-    </div>
-    <div class="col">
-      <button class="btn btn-primary w-100 py-2 fs-6 text-nowrap text-center" onclick="selectVariant(8)">Вариант 8</button>
-    </div>
-    <div class="col">
-      <button class="btn btn-primary w-100 py-2 fs-6 text-nowrap text-center" onclick="selectVariant(9)">Вариант 9</button>
-    </div>
-    <div class="col">
-      <button class="btn btn-primary w-100 py-2 fs-6 text-nowrap text-center" onclick="selectVariant(10)">Вариант 10</button>
-    </div>
-  </div>
+<main class="main-content">
+  <!-- NEW: единый контейнер создаёт отступы слева-справа -->
+  <div class="container">
+
+    <!-- HERO -->
+    <section id="heroSection"
+             class="hero rounded-3 text-white p-3 shadow-sm mt-5">
+      <h1 class="display-6 mb-1">Практика по интегралам</h1>
+      <p class="lead mb-0">Выберите вариант и переходите к интерактивным заданиям.</p>
+    </section>
+
+    <!-- Карточки вариантов -->
+<section id="variantSelection"
+         class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mt-4">
+    </section>
+
+    <!-- Задания -->
+    <section id="variantTasks" class="visually-hidden mt-5">
+      <button class="btn btn-secondary mb-3 ms-2" onclick="backToVariants()">
+        ← К вариантам
+      </button>
+      <div id="tasksContainer"></div>
+    </section>
+
+  </div> <!-- /container -->
+</main>
 </div>
-
-
-
-
-
-        
-        <!-- Секция с задачами (по умолчанию скрыта) -->
-        <div id="variantTasks" class="mt-5" style="display: none;">
-          <button class="btn btn-secondary mb-3" onclick="backToVariants()">← Назад к выбору вариантов</button>
-          <div id="tasksContainer"></div>
-        </div>
-      </div>
-    </main>
-  </div>
   
   <!-- Footer -->
   <footer>

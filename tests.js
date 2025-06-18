@@ -1,3 +1,4 @@
+
 // Объект с данными тестов — два варианта, по 10 вопросов в каждом
 const testsData = {
   variant1: {
@@ -576,7 +577,7 @@ const testsData = {
     ]
   },
 };
-
+const variantBlockId = 'variantSelection';
 // Глобальные переменные для отслеживания текущего состояния теста
 let currentTest;
 let currentQuestionIndex = 0;
@@ -592,6 +593,7 @@ function startTest(variant) {
   userAnswers = [];
   document.getElementById('variant-selection').style.display = 'none';
   const testContainer = document.getElementById('test-container');
+  document.getElementById('heroSection').classList.add('d-none');
   testContainer.style.display = 'block';
   showQuestion();
 }
@@ -705,4 +707,5 @@ function showResults() {
 function backToVariants() {
   document.getElementById('test-container').style.display = 'none';
   document.getElementById('variant-selection').style.display = 'block';
+  document.getElementById('heroSection').classList.remove('d-none');
 }
