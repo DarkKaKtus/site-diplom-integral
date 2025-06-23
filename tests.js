@@ -578,64 +578,73 @@ const testsData = {
   },
 };
 const variantBlockId = 'variantSelection';
-// Глобальные переменные для отслеживания текущего состояния теста
 let currentTest;
 let currentQuestionIndex = 0;
 let score = 0;
-// Массив для сохранения ответов пользователя
 let userAnswers = [];
 
-// Функция для запуска теста выбранного варианта
 function startTest(variant) {
   currentTest = testsData[variant];
   currentQuestionIndex = 0;
   score = 0;
   userAnswers = [];
   document.getElementById('variant-selection').style.display = 'none';
-  const testContainer = document.getElementById('test-container');
   document.getElementById('heroSection').classList.add('d-none');
-  testContainer.style.display = 'block';
+  document.getElementById('test-container').style.display = 'block';
   showQuestion();
 }
 
-// Функция для отображения текущего вопроса
 function showQuestion() {
   const testContainer = document.getElementById('test-container');
   const currentQuestion = currentTest.questions[currentQuestionIndex];
-  
-  let html = "";
-  // Кнопка "Назад к выбору вариантов"
-  html += `<button type="button" class="btn btn-secondary mb-3" onclick="backToVariants()">← Назад к выбору вариантов</button>`;
-  // Заголовок теста и номер текущего вопроса
-  html += `<h3 class="mb-4">${currentTest.title}</h3>`;
-  html += `<form id="questionForm">`;
-  html += `<div class="mb-4">`;
-  html += `<p><strong>Вопрос ${currentQuestionIndex + 1} из ${currentTest.questions.length}.</strong> ${currentQuestion.question}</p>`;
-  
+  const total = currentTest.questions.length;
+  const current = currentQuestionIndex + 1;
+  const percent = Math.round((currentQuestionIndex / total) * 100);
+
+
+  let html = `
+    <div class="card mx-auto p-4 shadow-sm animate-fade" style="max-width: 800px;">
+      <div class="mb-3">
+        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="backToVariants()">← Назад к выбору вариантов</button>
+      </div>
+      <h4 class="mb-1">${currentTest.title}</h4>
+      <div class="text-muted mb-3">Вопрос ${current} из ${total}</div>
+
+      <div class="progress mb-3">
+        <div class="progress-bar bg-info" role="progressbar" style="width: ${percent}%;" aria-valuenow="${percent}" aria-valuemin="0" aria-valuemax="100">${percent}%</div>
+      </div>
+
+      <form id="questionForm">
+        <div class="mb-4">
+          <p class="fw-bold">${currentQuestion.question}</p>`;
+
   currentQuestion.choices.forEach((choice, cIndex) => {
     const radioId = `q${currentQuestionIndex}_choice${cIndex}`;
-    html += `<div class="form-check">
-               <input class="form-check-input" type="radio" name="answer" id="${radioId}" value="${cIndex}">
-               <label class="form-check-label" for="${radioId}">${choice}</label>
-             </div>`;
+    const checked = userAnswers[currentQuestionIndex] === cIndex ? "checked" : "";
+    html += `
+      <div class="form-check mb-2">
+        <input class="form-check-input" type="radio" name="answer" id="${radioId}" value="${cIndex}" ${checked}>
+        <label class="form-check-label" for="${radioId}">${choice}</label>
+      </div>`;
   });
-  
-  html += `</div>`;
-  // Если последний вопрос, меняем текст кнопки
-  if (currentQuestionIndex < currentTest.questions.length - 1) {
-    html += `<button type="submit" class="btn btn-primary">Далее</button>`;
+
+  html += `</div><div class="d-flex justify-content-between">`;
+
+  // Кнопка "Назад"
+  if (currentQuestionIndex > 0) {
+    html += `<button type="button" class="btn btn-outline-secondary" onclick="prevQuestion()">← Назад</button>`;
   } else {
-    html += `<button type="submit" class="btn btn-primary">Завершить тест</button>`;
+    html += `<div></div>`;
   }
-  html += `</form>`;
-  
+
+  // Кнопка "Далее"
+  html += `<button type="submit" class="btn btn-primary">${current < total ? "Далее →" : "Завершить тест"}</button>`;
+  html += `</div></form></div>`;
+
   testContainer.innerHTML = html;
-  
-  // Назначаем обработчик на форму вопроса
   document.getElementById('questionForm').addEventListener('submit', handleNext);
 }
 
-// Обработчик перехода к следующему вопросу
 function handleNext(event) {
   event.preventDefault();
   const selected = document.querySelector('input[name="answer"]:checked');
@@ -643,19 +652,15 @@ function handleNext(event) {
     alert('Пожалуйста, выберите ответ');
     return;
   }
-  
+
   const answer = parseInt(selected.value);
-  // Сохраняем ответ пользователя для текущего вопроса
   userAnswers[currentQuestionIndex] = answer;
-  
-  // Проверка правильности ответа
+
   if (answer === currentTest.questions[currentQuestionIndex].answer) {
     score++;
   }
-  
+
   currentQuestionIndex++;
-  
-  // Если ещё есть вопрос, показываем следующий, иначе — выводим результат
   if (currentQuestionIndex < currentTest.questions.length) {
     showQuestion();
   } else {
@@ -663,47 +668,48 @@ function handleNext(event) {
   }
 }
 
-// Функция для отображения результата теста и деталей неверных ответов
+function prevQuestion() {
+  if (currentQuestionIndex > 0) {
+    currentQuestionIndex--;
+    showQuestion();
+  }
+}
+
 function showResults() {
   const testContainer = document.getElementById('test-container');
-  let html = "";
-  html += `<button type="button" class="btn btn-secondary mb-3" onclick="backToVariants()">← Назад к выбору вариантов</button>`;
-  html += `<h3 class="mb-4">Результаты теста</h3>`;
-  html += `<div class="alert alert-info">Ваш результат: ${score} из ${currentTest.questions.length}</div>`;
-  
-  // Перебираем вопросы и выводим информацию по тем, на которые ответили неверно
+  let html = `
+    <div class="card mx-auto p-4 shadow-sm animate-fade" style="max-width: 800px;">
+      <button type="button" class="btn btn-outline-secondary mb-3" onclick="backToVariants()">← Назад к выбору вариантов</button>
+      <h3 class="mb-4">Результаты теста</h3>
+      <div class="alert alert-info">Ваш результат: ${score} из ${currentTest.questions.length}</div>
+      <div class="mt-4"><h5>Ошибки:</h5>`;
+
   let incorrectExists = false;
-  html += `<div class="mt-4">`;
-  html += `<h4>Ошибки:</h4>`;
-  
   currentTest.questions.forEach((q, index) => {
-    // Если ответ неверный (или не был дан)
     if (userAnswers[index] !== q.answer) {
       incorrectExists = true;
-      // Определяем, какой вариант выбрал пользователь (если хоть что-то выбрано)
-      const userChoice = (userAnswers[index] !== undefined) 
-                         ? q.choices[userAnswers[index]] 
-                         : "Без ответа";
+      const userChoice = (userAnswers[index] !== undefined) ? q.choices[userAnswers[index]] : "Без ответа";
       const correctChoice = q.choices[q.answer];
-      
-      html += `<div class="card mb-3">
-                 <div class="card-body">
-                   <p><strong>Вопрос ${index + 1}:</strong> ${q.question}</p>
-                   <p><strong>Ваш ответ:</strong> ${userChoice}</p>
-                   <p><strong>Правильный ответ:</strong> ${correctChoice}</p>
-                 </div>
-               </div>`;
+
+      html += `
+        <div class="card mb-3">
+          <div class="card-body">
+            <p><strong>Вопрос ${index + 1}:</strong> ${q.question}</p>
+            <p><strong>Ваш ответ:</strong> ${userChoice}</p>
+            <p><strong>Правильный ответ:</strong> ${correctChoice}</p>
+          </div>
+        </div>`;
     }
   });
+
   if (!incorrectExists) {
     html += `<p>Поздравляем, все ответы верны!</p>`;
   }
-  html += `</div>`;
-  
+
+  html += `</div></div>`;
   testContainer.innerHTML = html;
 }
 
-// Функция возврата к выбору вариантов теста
 function backToVariants() {
   document.getElementById('test-container').style.display = 'none';
   document.getElementById('variant-selection').style.display = 'block';
