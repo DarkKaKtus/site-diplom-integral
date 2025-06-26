@@ -66,7 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const startButton = document.getElementById("startButton");
     const introContent = document.querySelector(".intro-content");
 
-    // Добавляем класс animate-in с задержкой, чтобы сработал transition
     setTimeout(() => {
         introContent.classList.add("animate-in");
     }, 100);
@@ -81,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-/* ---------- 1. Что рендерим ---------- */
+
 const variantsMeta = [
   {id:1, tasks:1, title:"Вариант 1"},
   {id:2, tasks:1, title:"Вариант 2"},
@@ -95,7 +94,7 @@ const variantsMeta = [
   {id:10, tasks:1, title:"Вариант 10"},
 ];
 
-/* ---------- 2. Карточки вместо кнопок ---------- */
+
 function renderVariantCards(){
   const box=document.getElementById("variantSelection");
   variantsMeta.forEach(v=>{
@@ -112,20 +111,15 @@ function renderVariantCards(){
   });
 }
 
-/* ---------- 3. Ваш существующий код (чуть поправил) ---------- */
 document.addEventListener("DOMContentLoaded", function(){
-  /* … блок смены иконки страницы без изменений … */
-  renderVariantCards();                 // ← добавили
+
+  renderVariantCards();
   updateNavigationButtons();
 });
 
-/* ======== всё ниже – полностью ваш оригинальный код ========= */
 
 function updateNavigationButtons() { /* … */ }
 
-/* интро-overlay */ /* … без изменений … */
-
-/* Данные с примерами заданий */
 const allVariants = {
   1:[`<iframe src="tasks/number1/index.html"
               style="border:0;width:100%;height:500px" allowfullscreen></iframe>`],
@@ -158,7 +152,7 @@ function selectVariant(num){
   container.innerHTML="";
   const tasks=allVariants[num]||[];
 
-  // убираем старую кнопку «Следующее задание»
+
   const oldNext=document.getElementById("nextTaskButton");
   if(oldNext) oldNext.remove();
 
@@ -169,7 +163,6 @@ function selectVariant(num){
     container.appendChild(card);
   });
 
-  // если есть ещё вариант – нарисуем «Следующее задание →»
   if(allVariants[num+1]){
     const backBtn=document.querySelector("#variantTasks button");
     const nextBtn=document.createElement("button");
@@ -187,7 +180,6 @@ function backToVariants(){
   document.getElementById("variantTasks").classList.add("visually-hidden");
 }
 
-/* плавный scroll по hash */
 window.addEventListener("DOMContentLoaded",()=>{
   const hash=location.hash;
   if(hash){

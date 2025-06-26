@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MAIN</title>
+  <title>Главная</title>
 
-  <!-- Bootstrap 5 -->
   <link href="styles/bootstrap.min.css" rel="stylesheet">
   <script src="styles/bootstrap.bundle.min.js" defer></script>
 
@@ -164,7 +163,6 @@
       const intro = document.getElementById("introOverlay");
       const startBtn = document.getElementById("startButton");
 
-      // Показывать интро только если еще не показано
       if (localStorage.getItem("introShown") === "true") {
         intro.classList.add("hidden");
       }

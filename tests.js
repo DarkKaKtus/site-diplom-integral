@@ -1,5 +1,4 @@
 
-// Объект с данными тестов — два варианта, по 10 вопросов в каждом
 const testsData = {
   variant1: {
     title: "Вариант 1. Основной тест по интегралам",
@@ -630,14 +629,13 @@ function showQuestion() {
 
   html += `</div><div class="d-flex justify-content-between">`;
 
-  // Кнопка "Назад"
   if (currentQuestionIndex > 0) {
     html += `<button type="button" class="btn btn-outline-secondary" onclick="prevQuestion()">← Назад</button>`;
   } else {
     html += `<div></div>`;
   }
 
-  // Кнопка "Далее"
+
   html += `<button type="submit" class="btn btn-primary">${current < total ? "Далее →" : "Завершить тест"}</button>`;
   html += `</div></form></div>`;
 

@@ -4,18 +4,17 @@
   <meta charset="UTF-8">
   <title>Задания</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Bootstrap CSS -->
+
   <link href="styles/bootstrap.min.css" rel="stylesheet">
-  <!-- Ваши стили -->
+
   <link rel="stylesheet" href="styles/styles.css">
   
-  <!-- Bootstrap JS Bundle -->
+
   <script src="styles/bootstrap.bundle.min.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 <body>
-  <!-- Mobile: Offcanvas-меню -->
+
   <nav class="navbar navbar-light bg-light fixed-top d-md-none">
     <div class="container-fluid">
       <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
@@ -24,7 +23,7 @@
     </div>
   </nav>
   
-  <!-- Offcanvas-меню для мобильных -->
+
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasMenuLabel">Меню</h5>
@@ -78,7 +77,6 @@
     </div>
   </div>
   
-  <!-- Desktop: Фиксированный сайдбар -->
   <nav class="sidebar d-flex flex-column d-none d-md-block">
     <ul class="nav flex-column">
       <li class="nav-item">
@@ -128,22 +126,21 @@
   
 
 <main class="main-content">
-  <!-- NEW: единый контейнер создаёт отступы слева-справа -->
+
   <div class="container">
 
-    <!-- HERO -->
     <section id="heroSection"
              class="hero rounded-3 text-white p-3 shadow-sm mt-5">
       <h1 class="display-6 mb-1">Практика по интегралам</h1>
       <p class="lead mb-0">Выберите вариант и переходите к интерактивным заданиям.</p>
     </section>
 
-    <!-- Карточки вариантов -->
+
 <section id="variantSelection"
          class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mt-4">
     </section>
 
-    <!-- Задания -->
+
     <section id="variantTasks" class="visually-hidden mt-5">
       <button class="btn btn-secondary mb-3 ms-2" onclick="backToVariants()">
         ← К вариантам
@@ -151,11 +148,10 @@
       <div id="tasksContainer"></div>
     </section>
 
-  </div> <!-- /container -->
+  </div>
 </main>
 </div>
   
-  <!-- Footer -->
   <footer>
     <p class="mb-0">Тесляк Игорь 711/722 ТТЖТ 2025</p>
   </footer>

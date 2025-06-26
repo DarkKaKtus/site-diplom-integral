@@ -23,10 +23,9 @@
     
 </head>
 <header>
-  <!-- Меню оставляем без изменений -->
 </header>
 <body>
-  <!-- Navbar для мобильных устройств -->
+
   <nav class="navbar navbar-light bg-light fixed-top d-md-none">
     <div class="container-fluid">
       <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
@@ -35,7 +34,6 @@
     </div>
   </nav>
 
-  <!-- Offcanvas для мобильной навигации -->
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasMenuLabel">Меню</h5>
@@ -89,8 +87,6 @@
     </div>
   </div>
 
-
-    <!-- Боковое меню для десктопа -->
     <nav class="sidebar d-flex flex-column d-none d-md-block">
       <ul class="nav flex-column">
         <li class="nav-item">
@@ -139,7 +135,6 @@
     </nav>
 
     <main class="main-content">
-  <!-- NEW: единый контейнер создаёт отступы слева-справа -->
   <div class="container">
     <section id="heroSection"
              class="hero rounded-3 text-white p-3 shadow-sm mt-5">
@@ -147,14 +142,12 @@
       <p class="lead mb-0">Выберите вариант и переходите к тестам.</p>
     </section>
 
-<!-- === БЛОК ВЫБОРА ВАРИАНТА ================================ -->
 <div id="variant-selection" class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-12 text-center">
     </div>
   </div>
 
-  <!-- Карточки вместо кнопок -->
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
 
     <!-- ВАРИАНТ 1 -->
@@ -218,8 +211,8 @@
       </div>
     </div>
 
-  </div><!-- /.row -->
-</div><!-- /#variant-selection -->
+  </div>
+</div>
 
 
 <div id="test-container" class="container mt-5" style="display: none;">

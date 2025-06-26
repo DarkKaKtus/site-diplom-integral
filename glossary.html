@@ -4,16 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Глоссарий</title>
-  <!-- Bootstrap CSS -->
   <link href="styles/bootstrap.min.css" rel="stylesheet">
-  <!-- Пользовательские стили, если нужны -->
   <link rel="stylesheet" href="styles/styles.css">
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <script defer src="script.js"></script>
 </head>
 <body>
-  <!-- Mobile: Offcanvas-меню -->
+
   <nav class="navbar navbar-light bg-light fixed-top d-md-none">
     <div class="container-fluid">
       <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
@@ -22,7 +19,7 @@
     </div>
   </nav>
   
-  <!-- Offcanvas-меню для мобильных -->
+ 
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasMenuLabel">Меню</h5>
@@ -76,7 +73,7 @@
     </div>
   </div>
   
-  <!-- Desktop: Фиксированный сайдбар -->
+ 
   <nav class="sidebar d-flex flex-column d-none d-md-block">
     <ul class="nav flex-column">
       <li class="nav-item">
@@ -127,16 +124,16 @@
     </ul>
   </nav>
 
-  <!-- Основной контент страницы -->
+  
   <div class="container-fluid">
     <div class="row">
       <main class="main-centered px-md-4">
-        <!-- Заголовок страницы -->
+        
         <div class="pt-3 pb-2 mb-3 border-bottom">
           <h1 class="h2">Глоссарий</h1>
         </div>
 
-        <!-- Навигация по буквам в виде nav-pills -->
+        
         <div class="letter-nav mb-4">
           <ul class="nav justify-content-center flex-wrap">
           <li class="nav-item"><a class="nav-link" href="#А">А</a></li>
@@ -164,7 +161,7 @@
 
         <!-- Контент глоссария -->
         <div class="glossary-content">
-          <!-- Блок "А" -->
+         
           <div id="А" class="term-section">
             <h3 class="mb-3">А</h3>
             <div class="mb-3">
@@ -173,7 +170,7 @@
             </div>
           </div>
 
-          <!-- Блок "В" -->
+          
           <div id="В" class="term-section">
             <h3 class="mb-3">В</h3>
             <div class="mb-3">
@@ -181,7 +178,7 @@
               <p>Верхняя граница интервала, на котором вычисляется определённый интеграл. Например, в интеграле ∫[a, b] f(x) dx, b является верхним пределом.</p>
             </div>
           </div>
-                              <!-- Блок "Г" -->
+           
           <div id="Г" class="term-section">
             <h3 class="mb-3">Г</h3>
             <div class="mb-3">
@@ -190,7 +187,7 @@
             </div>
           </div>
 
-          <!-- Блок "Д" -->
+         
           <div id="Д" class="term-section">
             <h3 class="mb-3">Д</h3>
             <div class="mb-3">
@@ -199,7 +196,7 @@
             </div>
           </div>
 
-          <!-- Блок "Е" -->
+          
           <div id="Е" class="term-section">
             <h3 class="mb-3">Е</h3>
             <div class="mb-3">
@@ -208,7 +205,7 @@
             </div>
           </div>
 
-          <!-- Блок "И" -->
+          
           <div id="И" class="term-section">
             <h3 class="mb-3">И</h3>
             <div class="mb-3">
@@ -229,7 +226,7 @@
             </div>
           </div>
 
-          <!-- Блок "К" -->
+          
           <div id="К" class="term-section">
             <h3 class="mb-3">К</h3>
             <div class="mb-3">
@@ -238,7 +235,7 @@
             </div>
           </div>
 
-          <!-- Блок "Л" -->
+          
           <div id="Л" class="term-section">
             <h3 class="mb-3">Л</h3>
             <div class="mb-3">
@@ -247,7 +244,7 @@
             </div>
           </div>
 
-          <!-- Блок "М" -->
+          
           <div id="М" class="term-section">
             <h3 class="mb-3">М</h3>
             <div class="mb-3">
@@ -257,7 +254,7 @@
           </div>
 
 
-          <!-- Блок "Н" -->
+          
           <div id="Н" class="term-section">
             <h3 class="mb-3">Н</h3>
             <div class="mb-3">
@@ -270,7 +267,7 @@
             </div>
           </div>
 
-          <!-- Блок "О" -->
+          
           <div id="О" class="term-section">
             <h3 class="mb-3">О</h3>
             <div class="mb-3">
@@ -283,7 +280,7 @@
             </div>
           </div>
 
-          <!-- Блок "П" -->
+         
           <div id="П" class="term-section">
             <h3 class="mb-3">П</h3>
             <div class="mb-3">
@@ -296,7 +293,7 @@
             </div>
           </div>
           
-          <!-- Блок "Р" -->
+          
           <div id="Р" class="term-section">
             <h3 class="mb-3">Р</h3>
             <div class="mb-3">
@@ -305,7 +302,7 @@
             </div>
           </div>
 
-          <!-- Блок "С" -->
+          
           <div id="С" class="term-section">
             <h3 class="mb-3">С</h3>
             <div class="mb-3">
@@ -317,7 +314,7 @@
               <p>Интеграл, содержащий особенности (например, разрывы или асимптоты), требующий специальных методов вычисления.</p>
             </div>
           </div>
-                    <!-- Блок "Т" -->
+                  
           <div id="Т" class="term-section">
             <h3 class="mb-3">Т</h3>
             <div class="mb-3">
@@ -325,7 +322,7 @@
               <p>Точка, в которой функция не является непрерывной. Может влиять на существование определённого интеграла.</p>
             </div>
           </div>
-          <!-- Блок "У" -->
+
           <div id="У" class="term-section">
             <h3 class="mb-3">У</h3>
             <div class="mb-3">
@@ -333,7 +330,7 @@
               <p>Свойство несобственного интеграла сходиться при определённых условиях, несмотря на расходимость отдельных частей.</p>
             </div>
           </div>
-          <!-- Блок "Ч" -->
+
           <div id="Ч" class="term-section">
             <h3 class="mb-3">Ч</h3>
             <div class="mb-3">
@@ -347,9 +344,6 @@
           </div>
 
 
-
-
-          <!-- Блок "Э" -->
           <div id="Э" class="term-section">
             <h3 class="mb-3">Э</h3>
             <div class="mb-3">
@@ -363,14 +357,12 @@
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
     <div class="container">
       <p class="mb-0">Тесляк Игорь 711/722 ТТЖТ 2025</p>
     </div>
   </footer>
 
-  <!-- Bootstrap JS Bundle -->
   <script src="styles/bootstrap.bundle.min.js"></script>
 </body>
 </html>
